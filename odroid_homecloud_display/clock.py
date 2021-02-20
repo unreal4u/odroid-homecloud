@@ -35,16 +35,24 @@ def main():
             today_last_time = today_time
             with canvas(device) as draw:
                   #draw.rectangle(device.bounding_box, outline="white")
-                  font = ImageFont.truetype('./fonts/roboto-2014/Roboto-Light.ttf', 20)
+                  awesome_font = ImageFont.truetype('../fonts/fontawesome-webfont.ttf', 25)
+                  text_font = ImageFont.truetype('../fonts/roboto-2014/Roboto-Light.ttf', 20)
                   if screen_number == 1:
-                        #font = ImageFont.truetype('/home/unreal4u/fonts/ArchivoNarrow-Regular.ttf', 25)
-                        draw.text((0, 0), today_time, font=font, fill=1)
-                        draw.text((0, 20), 'abcdefghijklm', font=font, fill=1)
-                        draw.text((0, 40), 'nopqrstuvwxyz', font=font, fill=1)
+                        draw.text((0, 0), today_time, font=text_font, fill=1)
+                        draw.text((0, 25), "\uf185", font=awesome_font, fill=1)
+                        draw.text((25, 25), '18°', font=text_font, fill=1)
+                        draw.text((60, 25), "\uf015", font=awesome_font, fill=1)
+                        draw.text((85, 25), '19°', font=text_font, fill=1)
                   if screen_number == 2:
-                        draw.text((0, 0), 'Hallo', font=font, fill=1)
+                        draw.text((0, 0), "\uf019", font=awesome_font, fill=1)
+                        draw.text((25, 0), '287.73 Mbps', font=text_font, fill=1)
+                        draw.text((0, 25), "\uf066", font=awesome_font, fill=1)
+                        draw.text((25, 25), '26 clients', font=text_font, fill=1)
                   if screen_number == 3:
-                        draw.text((0, 0), 'Dag!', font=font, fill=1)
+                        draw.text((0, 0), "\uf0e7", font=awesome_font, fill=1)
+                        draw.text((20, 0), 'Tar.: Normal', font=text_font, fill=1)
+                        draw.text((0, 25), "\uf0e7", font=awesome_font, fill=1)
+                        draw.text((20, 25), '2.52 kW', font=text_font, fill=1)
                   timer = timer + 1
                   if timer % 3 == 0:
                         screen_number = screen_number + 1;
