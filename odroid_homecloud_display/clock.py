@@ -16,12 +16,14 @@ from time import sleep
 from PIL import ImageFont, ImageDraw, Image
 import time
 import datetime
+import os
 
 serial = i2c(port=0, address=0x3C)
 # device = sh1106(serial, rotate=0)
 device = ssd1306(serial, rotate=2)
 
 def main():
+    os.chdir(os.path.dirname(os.path.abspath(__file__)))
     today_last_time = "Unknown"
     screen_number = 1
     timer = 0
@@ -33,7 +35,7 @@ def main():
             today_last_time = today_time
             with canvas(device) as draw:
                   #draw.rectangle(device.bounding_box, outline="white")
-                  font = ImageFont.truetype('../fonts/Roboto-Light.ttf', 20)
+                  font = ImageFont.truetype('./fonts/roboto-2014/Roboto-Light.ttf', 20)
                   if screen_number == 1:
                         #font = ImageFont.truetype('/home/unreal4u/fonts/ArchivoNarrow-Regular.ttf', 25)
                         draw.text((0, 0), today_time, font=font, fill=1)
