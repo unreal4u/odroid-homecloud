@@ -23,17 +23,31 @@ device = ssd1306(serial, rotate=2)
 
 def main():
     today_last_time = "Unknown"
+    screen_number = 1
+    timer = 0
     while True:
         now = datetime.datetime.now()
         today_date = now.strftime("%d %b %y")
-        today_time = now.strftime("%H:%M")
+        today_time = now.strftime("%H:%M:%S")
         if today_time != today_last_time:
             today_last_time = today_time
             with canvas(device) as draw:
-                  font = ImageFont.truetype('/usr/share/fonts/truetype/dseg/DSEG7Modern-Bold.ttf', 36)
-                  draw.text((0, 27), today_time, font=font, fill=1)
-                  font = ImageFont.truetype('/usr/share/fonts/truetype/dseg/DSEG7Modern-Bold.ttf', 20)
-                  draw.text((0, 0), today_date, font=font, fill=1)
+                  #draw.rectangle(device.bounding_box, outline="white")
+                  font = ImageFont.truetype('../fonts/Roboto-Light.ttf', 20)
+                  if screen_number == 1:
+                        #font = ImageFont.truetype('/home/unreal4u/fonts/ArchivoNarrow-Regular.ttf', 25)
+                        draw.text((0, 0), today_time, font=font, fill=1)
+                        draw.text((0, 20), 'abcdefghijklm', font=font, fill=1)
+                        draw.text((0, 40), 'nopqrstuvwxyz', font=font, fill=1)
+                  if screen_number == 2:
+                        draw.text((0, 0), 'Hallo', font=font, fill=1)
+                  if screen_number == 3:
+                        draw.text((0, 0), 'Dag!', font=font, fill=1)
+                  timer = timer + 1
+                  if timer % 3 == 0:
+                        screen_number = screen_number + 1;
+                        if screen_number == 4:
+                              screen_number = 1;
         time.sleep(0.1)
 
 if __name__ == "__main__":
